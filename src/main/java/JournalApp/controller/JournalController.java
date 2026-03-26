@@ -5,7 +5,6 @@ import JournalApp.entity.JournalEntry;
 import JournalApp.service.JournalService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +46,7 @@ public class JournalController {
          if (journalEntry.isEmpty()){
              return new ResponseEntity<>(journalEntry.get(), HttpStatus.OK);
         }
-        return  new ResponseEntity<>(journalEntry.get(), HttpStatus.NOT_FOUND);
+        return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("id/{myId}")
@@ -65,7 +64,7 @@ public class JournalController {
             journalService.saveEntry(old);
             return new ResponseEntity<>(old, HttpStatus.OK);
         }
-        return new ResponseEntity<>(old, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
