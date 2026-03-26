@@ -1,6 +1,7 @@
 package JournalApp.controller;
 
 
+
 import JournalApp.entity.JournalEntry;
 import JournalApp.service.JournalService;
 import org.bson.types.ObjectId;
