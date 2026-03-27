@@ -1,7 +1,6 @@
 package JournalApp.controller;
 
 
-import JournalApp.entity.JournalEntry;
 import JournalApp.entity.User;
 import JournalApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

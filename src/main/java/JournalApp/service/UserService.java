@@ -1,7 +1,6 @@
 package JournalApp.service;
 import JournalApp.entity.User;
 import JournalApp.repository.UserRepository;
-import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
