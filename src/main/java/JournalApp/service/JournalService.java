@@ -3,6 +3,7 @@ package JournalApp.service;
 import JournalApp.entity.JournalEntry;
 import JournalApp.entity.User;
 import JournalApp.repository.JournalRepository;
+import JournalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,21 @@ public class JournalService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Transactional
     public void saveEntry(JournalEntry journalEntry,String userName){
-         User user =     userService.findByUserName(userName);
-         journalEntry.setDate(LocalDateTime.now());
-      JournalEntry saved =   journalRepository.save(journalEntry);
-      user.getJournalEntries().add(saved);
-      userService.saveEntry(user);
-
-    }
+       try {
+           User user =     userService.findByUserName(userName);
+           journalEntry.setDate(LocalDateTime.now());
+           JournalEntry saved =   journalRepository.save(journalEntry);
+           user.getJournalEntries().add(saved);
+           userRepository.save(user);
+       }catch (Exception e){
+            e.printStackTrace();
+       }
+      }
 
 
     public List<JournalEntry> getAllEntries(){
